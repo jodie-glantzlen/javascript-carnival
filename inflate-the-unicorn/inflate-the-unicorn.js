@@ -17,6 +17,6 @@ function imageClicked(e) {
   console.log('clicked!')
 }
 
-for (let i = 0; i < images.length; i++) {
-  images[i].onclick = imageClicked;
+for (let image of images) {
+  image.onclick = imageClicked;
 }
