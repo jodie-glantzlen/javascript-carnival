@@ -28,7 +28,11 @@ function imageClicked(e) {
   let image = e.target;
   unicorns[image.id] += 1;
   //console.log(`${unicorns[image.id]}`)
-  document.getElementById(`${image.id}`).src = `images/unicorn-${unicorns[image.id]}.png`;
+  if (unicorns[image.id] > 3) {
+    alert(`${image.id} says 'Thank you!'`)
+  } else {
+    document.getElementById(`${image.id}`).src = `images/unicorn-${unicorns[image.id]}.png`;
+  }
 }
 
 for (let image of images) {
