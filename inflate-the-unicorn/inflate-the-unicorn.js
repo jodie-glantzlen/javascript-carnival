@@ -17,21 +17,32 @@ let images = document.getElementsByTagName('img');
 //AND update img's src using template literals?
 
 const unicorns = {
-  "unicorn-1": 0,
-  "unicorn-2": 0,
-  "unicorn-3": 0
+  "unicorn-1": {
+    count: 0,
+    name: "John"
+  },
+
+  "unicorn-2": {
+    count: 0,
+    name: "Paul",
+  },
+
+  "unicorn-3": {
+    count: 0,
+    name: "George"
+  }
 }
 
 //handle click on images
 
 function imageClicked(e) {
   let image = e.target;
-  unicorns[image.id] += 1;
+  unicorns[image.id].count += 1;
   //console.log(`${unicorns[image.id]}`)
-  if (unicorns[image.id] > 3) {
-    alert(`${image.id} says 'Thank you!'`)
+  if (unicorns[image.id].count > 3) {
+    alert(`${unicorns[image.id].name} says 'Thank you!'`)
   } else {
-    document.getElementById(`${image.id}`).src = `images/unicorn-${unicorns[image.id]}.png`;
+    document.getElementById(`${image.id}`).src = `images/unicorn-${unicorns[image.id].count}.png`;
   }
 }
 
