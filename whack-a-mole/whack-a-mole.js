@@ -42,40 +42,55 @@ console.log('Whack-a-Mole!')
 
 //SECOND ATTEMPT
 
-//1. store reference to the cells
+//global variables we'll use for our main logic
+let node
+let imgChild
 
-//array to store references in:
+//utilities (thanks JS Cafe)
+function getRandomInt(min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+//1. store cells ref in array
+
 let cellsArr = document.getElementsByTagName('td')
 //console.log(cellsArr);
 
-//2. get a randomised cell index:
-let node
-let imgChild
-//console.log(randomIndex);
-//cellsArr[randomIndex].innerHTML = 'hi';
-
-//3. append img child to random td:
+//2. create function to append img child to random td
+  //this function will be called when the page is refreshed
+  //AND again after we remove mole from a cell
 
 function addMoleToRandomCell() {
+  //get a random cell index
   let randomIndex = getRandomInt(0, cellsArr.length - 1)
+
+  //assign it to global variable so we can keep manipulating it later
   node = cellsArr[randomIndex]
   //console.log('current index: ', randomIndex)
-  //console.log('random node from index: ', node)
+
+  //create new mole img (we need to do it because it gets removed whenever we call whackedMole())
   let newMole = document.createElement('img')
   newMole.src = 'mole.PNG'
   newMole.id = 'mole'
+
+  //make newMole a new child to append to random cell when page is refreshed AND after we click to remove mole
   imgChild = newMole
   node.appendChild(imgChild)
 }
 
+//this is called when the page is refreshed:
 addMoleToRandomCell()
 
-//4. main feature
+//3. main feature
 
 function whackedMole(e) {
   let cell = e.target
-  //remove mole:
+  //remove mole on click:
   node.removeChild(imgChild)
+
+  //make mole reappear randomly again:
   addMoleToRandomCell()
 }
 
@@ -83,9 +98,3 @@ for (let cell of cellsArr) {
   cell.onclick = whackedMole
 }
 
-//utilities
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
