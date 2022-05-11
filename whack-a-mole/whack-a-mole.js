@@ -53,14 +53,17 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+//audio
+let playSound = () => new Audio('whack-audio.wav').play()
+
 //1. store cells ref in array
 
 let cellsArr = document.getElementsByTagName('td')
 //console.log(cellsArr);
 
 //2. create function to append img child to random td
-  //this function will be called when the page is refreshed
-  //AND again after we remove mole from a cell
+//this function will be called when the page is refreshed
+//AND again after we remove mole from a cell
 
 function addMoleToRandomCell() {
   //get a random cell index
@@ -92,9 +95,9 @@ function whackedMole(e) {
 
   //make mole reappear randomly again:
   addMoleToRandomCell()
+  playSound()
 }
 
 for (let cell of cellsArr) {
   cell.onclick = whackedMole
 }
-
