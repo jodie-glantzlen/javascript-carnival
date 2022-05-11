@@ -1,8 +1,8 @@
-  // -    -   -   -   -  //
- // JAVASCRIPT CARNIVAL //
+// -    -   -   -   -  //
+// JAVASCRIPT CARNIVAL //
 // -    -   -   -   -  //
 
-console.log("Whack-a-Mole!")
+console.log('Whack-a-Mole!')
 //tests
 
 // let table = document.getElementById('tbl');
@@ -45,20 +45,43 @@ console.log("Whack-a-Mole!")
 //1. store reference to the cells
 
 //array to store references in:
-let cellsArr = document.getElementsByTagName('td');
+let cellsArr = document.getElementsByTagName('td')
 //console.log(cellsArr);
 
-//2.get a randomised cell index:
-
-let randomIndex = getRandomInt(0, cellsArr.length);
+//2. get a randomised cell index:
+let node
+let imgChild
 //console.log(randomIndex);
 //cellsArr[randomIndex].innerHTML = 'hi';
 
 //3. append img child to random td:
-const node = document.getElementsByTagName('td')[randomIndex];
-let imgChild = document.getElementById('mole');
-node.appendChild(imgChild);
 
+function addMoleToRandomCell() {
+  let randomIndex = getRandomInt(0, cellsArr.length - 1)
+  node = cellsArr[randomIndex]
+  //console.log('current index: ', randomIndex)
+  //console.log('random node from index: ', node)
+  let newMole = document.createElement('img')
+  newMole.src = 'mole.PNG'
+  newMole.id = 'mole'
+  imgChild = newMole
+  node.appendChild(imgChild)
+}
+
+addMoleToRandomCell()
+
+//4. main feature
+
+function whackedMole(e) {
+  let cell = e.target
+  //remove mole:
+  node.removeChild(imgChild)
+  addMoleToRandomCell()
+}
+
+for (let cell of cellsArr) {
+  cell.onclick = whackedMole
+}
 
 //utilities
 function getRandomInt(min, max) {
