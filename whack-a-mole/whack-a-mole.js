@@ -54,6 +54,12 @@ let randomIndex = getRandomInt(0, cellsArr.length);
 //console.log(randomIndex);
 //cellsArr[randomIndex].innerHTML = 'hi';
 
+//3. append img child to random td:
+const node = document.getElementsByTagName('td')[randomIndex];
+let imgChild = document.getElementById('mole');
+node.appendChild(imgChild);
+
+
 //utilities
 function getRandomInt(min, max) {
   min = Math.ceil(min)

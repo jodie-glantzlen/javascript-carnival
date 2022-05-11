@@ -60,3 +60,8 @@ td {
 .shoes {
   z-index: 1
 }
+
+#mole {
+  width: 100%;
+  height: 100%;
+}
