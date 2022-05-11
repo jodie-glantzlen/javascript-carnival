@@ -93,7 +93,7 @@ function whackedMole(e) {
   //remove mole on click:
   node.removeChild(imgChild)
 
-  //make mole reappear randomly again:
+  //make mole reappear randomly again and 
   addMoleToRandomCell()
   playSound()
 }
