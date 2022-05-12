@@ -14,14 +14,20 @@ let head = document.getElementById('head')
 let body = document.getElementById('body')
 let shoes = document.getElementById('shoes')
 
-// change head of the clown with image 1
-
-
+// change clown head 
 function changeClownHead() {
   head.src = `images/head${headIndex}.png`
-  headIndex += 1
-  //console.log('head index: ', headIndex)
 }
 
+//change heads on arrow right key
+document.addEventListener('keydown', (e) => {
+  if (e.key == 'ArrowRight') {
+    changeClownHead();
+    headIndex += 1
+    if (headIndex > 5) {
+      headIndex = 0;
+      console.log('headindex: ', headIndex)
+  }
+}
+});
 
-changeClownHead()
