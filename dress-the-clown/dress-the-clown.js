@@ -57,7 +57,6 @@ function decreaseCurrentClothingIndex() {
   }
   if (bodySectionIndex == 2) {
     shoesIndex = decreaseIndex(shoesIndex)
-    // legs
   }
 }
 
@@ -67,31 +66,55 @@ function renderCurrentClothing() {
   shoes.src = `images/shoes${shoesIndex}.png`
 }
 
-// change the currently selected body part (bodySectionIndex)
-document.addEventListener('keydown', (e) => {
-  if (e.key == 'ArrowRight') {
-    increaseCurrentClothingIndex()
-    renderCurrentClothing()
-  } else if (e.key == 'ArrowLeft') {
-    decreaseCurrentClothingIndex()
-    renderCurrentClothing()
-  }
-})
+// // change the currently selected body part (bodySectionIndex)
+// document.addEventListener('keydown', (e) => {
+//   if (e.key == 'ArrowRight') {
+//     increaseCurrentClothingIndex()
+//     renderCurrentClothing()
+//   } else if (e.key == 'ArrowLeft') {
+//     decreaseCurrentClothingIndex()
+//     renderCurrentClothing()
+//   }
+// })
 
-// decide which body part to change
+// // decide which body part to change
+// document.addEventListener('keydown', (e) => {
+//   e.preventDefault()
+//   if (e.key == 'ArrowDown') {
+//     bodySectionIndex++
+//     if (bodySectionIndex > 2) {
+//       bodySectionIndex = 0
+//     }
+//   } else if (e.key == 'ArrowUp') {
+//     bodySectionIndex--
+//     if (bodySectionIndex < 0) {
+//       bodySectionIndex = 2
+//     }
+//   }
+// })
+
 document.addEventListener('keydown', (e) => {
   e.preventDefault()
-  if (e.key == 'ArrowDown') {
-    bodySectionIndex++
-    if (bodySectionIndex > 2) {
-      bodySectionIndex = 0
-    }
-    console.log('bodySectionIndex: ', bodySectionIndex)
-  } else if (e.key == 'ArrowUp') {
-    bodySectionIndex--
-    if (bodySectionIndex < 0) {
-      bodySectionIndex = 2
-    }
-    console.log('bodySectionIndex: ', bodySectionIndex)
+  switch (e.key) {
+    case 'ArrowDown':
+      bodySectionIndex++
+      if (bodySectionIndex > 2) {
+        bodySectionIndex = 0
+      }
+      break
+    case 'ArrowUp':
+      bodySectionIndex--
+      if (bodySectionIndex < 0) {
+        bodySectionIndex = 2
+      }
+      break
+    case 'ArrowRight':
+      increaseCurrentClothingIndex()
+      renderCurrentClothing()
+      break
+    case 'ArrowLeft':
+      decreaseCurrentClothingIndex()
+      renderCurrentClothing()
+      break
   }
 })
