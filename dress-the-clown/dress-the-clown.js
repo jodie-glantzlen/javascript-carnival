@@ -60,39 +60,14 @@ function decreaseCurrentClothingIndex() {
   }
 }
 
+// update source for each img based on current clothing index
 function renderCurrentClothing() {
   head.src = `images/head${headIndex}.png`
   clothes.src = `images/body${clothesIndex}.png`
   shoes.src = `images/shoes${shoesIndex}.png`
 }
 
-// // change the currently selected body part (bodySectionIndex)
-// document.addEventListener('keydown', (e) => {
-//   if (e.key == 'ArrowRight') {
-//     increaseCurrentClothingIndex()
-//     renderCurrentClothing()
-//   } else if (e.key == 'ArrowLeft') {
-//     decreaseCurrentClothingIndex()
-//     renderCurrentClothing()
-//   }
-// })
-
-// // decide which body part to change
-// document.addEventListener('keydown', (e) => {
-//   e.preventDefault()
-//   if (e.key == 'ArrowDown') {
-//     bodySectionIndex++
-//     if (bodySectionIndex > 2) {
-//       bodySectionIndex = 0
-//     }
-//   } else if (e.key == 'ArrowUp') {
-//     bodySectionIndex--
-//     if (bodySectionIndex < 0) {
-//       bodySectionIndex = 2
-//     }
-//   }
-// })
-
+// put it all together in an event function that handles keydown event
 document.addEventListener('keydown', (e) => {
   e.preventDefault()
   switch (e.key) {
