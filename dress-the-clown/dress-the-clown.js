@@ -4,34 +4,94 @@
 
 console.log('Dress The Clown!')
 
-// gobal variables to reuse
+// gobal variables
 let headIndex = 0
-let bodyIndex = 0
+let clothesIndex = 0
 let shoesIndex = 0
+let bodySectionIndex = 0
 
 // get body parts
 let head = document.getElementById('head')
-let body = document.getElementById('body')
+let clothes = document.getElementById('clothes')
 let shoes = document.getElementById('shoes')
 
-// change clown head
-function changeClownHead() {
-  head.src = `images/head${headIndex}.png`
+// functions for increasing and decreasing the provided index by 1
+// these functions are required so that we don't have to check the
+// value of the index every time we alter the index
+function decreaseIndex(index) {
+  index--
+  if (index < 0) {
+    index = 5
+  }
+  return index
 }
 
-//change heads on arrow right and left key
+function increaseIndex(index) {
+  index++
+  if (index > 5) {
+    index = 0
+  }
+  return index
+}
+
+// increment the CURRENT clothing option index, based on bodySectionIndex
+function increaseCurrentClothingIndex() {
+  if (bodySectionIndex == 0) {
+    headIndex = increaseIndex(headIndex)
+  }
+  if (bodySectionIndex == 1) {
+    clothesIndex = increaseIndex(clothesIndex)
+  }
+  if (bodySectionIndex == 2) {
+    shoesIndex = increaseIndex(shoesIndex)
+  }
+}
+
+// decrement the CURRENT clothing option index, based on bodySectionIndex
+function decreaseCurrentClothingIndex() {
+  if (bodySectionIndex == 0) {
+    headIndex = decreaseIndex(headIndex)
+  }
+  if (bodySectionIndex == 1) {
+    clothesIndex = decreaseIndex(clothesIndex)
+  }
+  if (bodySectionIndex == 2) {
+    shoesIndex = decreaseIndex(shoesIndex)
+    // legs
+  }
+}
+
+function renderCurrentClothing() {
+  head.src = `images/head${headIndex}.png`
+  clothes.src = `images/body${clothesIndex}.png`
+  shoes.src = `images/shoes${shoesIndex}.png`
+}
+
+// change the currently selected body part (bodySectionIndex)
 document.addEventListener('keydown', (e) => {
   if (e.key == 'ArrowRight') {
-    headIndex++
-    if (headIndex > 5) {
-      headIndex = 0
-    }
-    changeClownHead()
+    increaseCurrentClothingIndex()
+    renderCurrentClothing()
   } else if (e.key == 'ArrowLeft') {
-    headIndex--
-    if (headIndex < 0) {
-      headIndex = 5
+    decreaseCurrentClothingIndex()
+    renderCurrentClothing()
+  }
+})
+
+// decide which body part to change
+document.addEventListener('keydown', (e) => {
+  e.preventDefault()
+  if (e.key == 'ArrowDown') {
+    bodySectionIndex++
+    if (bodySectionIndex > 2) {
+      bodySectionIndex = 0
     }
-    changeClownHead()
+    console.log('bodySectionIndex: ', bodySectionIndex)
+  } else if (e.key == 'ArrowUp') {
+    bodySectionIndex--
+    if (bodySectionIndex < 0) {
+      bodySectionIndex = 2
+    }
+    console.log('bodySectionIndex: ', bodySectionIndex)
   }
 })
