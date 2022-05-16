@@ -67,17 +67,26 @@ function renderCurrentClothing() {
   shoes.src = `images/shoes${shoesIndex}.png`
 }
 
-function displayBodySection() {
+function highlightBodySection() {
   if (bodySectionIndex == 0) {
-    document.getElementById('choose-item').innerHTML = 'Choose the head!'
+    document.getElementById('head').style.filter =
+      'drop-shadow(0 0 0.75rem yellow)'
+    document.getElementById('clothes').style.filter = ''
+    document.getElementById('shoes').style.filter = ''
   } else if (bodySectionIndex == 1) {
-    document.getElementById('choose-item').innerHTML = 'Choose the clothes!'
+    document.getElementById('clothes').style.filter =
+      'drop-shadow(0 0 0.75rem yellow)'
+    document.getElementById('head').style.filter = ''
+    document.getElementById('shoes').style.filter = ''
   } else if (bodySectionIndex == 2) {
-    document.getElementById('choose-item').innerHTML = 'Choose the shoes!'
+    document.getElementById('shoes').style.filter =
+      'drop-shadow(0 0 0.75rem yellow)'
+    document.getElementById('head').style.filter = ''
+    document.getElementById('clothes').style.filter = ''
   }
 }
 
-displayBodySection()
+highlightBodySection()
 
 // put it all together in an event function that handles keydown event
 document.addEventListener('keydown', (e) => {
@@ -88,14 +97,14 @@ document.addEventListener('keydown', (e) => {
       if (bodySectionIndex > 2) {
         bodySectionIndex = 0
       }
-      displayBodySection()
+      highlightBodySection()
       break
     case 'ArrowUp':
       bodySectionIndex--
       if (bodySectionIndex < 0) {
         bodySectionIndex = 2
       }
-      displayBodySection()
+      highlightBodySection()
       break
     case 'ArrowRight':
       increaseCurrentClothingIndex()
