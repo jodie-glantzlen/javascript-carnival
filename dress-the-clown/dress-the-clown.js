@@ -69,24 +69,31 @@ function renderCurrentClothing() {
 
 function highlightBodySection() {
   if (bodySectionIndex == 0) {
-    document.getElementById('head').style.filter =
-      'drop-shadow(0 0 0.75rem yellow)'
-    document.getElementById('clothes').style.filter = ''
-    document.getElementById('shoes').style.filter = ''
+    addHighlight('head')
+    removeHighlight('clothes')
+    removeHighlight('shoes')
   } else if (bodySectionIndex == 1) {
-    document.getElementById('clothes').style.filter =
-      'drop-shadow(0 0 0.75rem yellow)'
-    document.getElementById('head').style.filter = ''
-    document.getElementById('shoes').style.filter = ''
+    addHighlight('clothes')
+    removeHighlight('head')
+    removeHighlight('shoes')
   } else if (bodySectionIndex == 2) {
-    document.getElementById('shoes').style.filter =
-      'drop-shadow(0 0 0.75rem yellow)'
-    document.getElementById('head').style.filter = ''
-    document.getElementById('clothes').style.filter = ''
+    addHighlight('shoes')
+    removeHighlight('head')
+    removeHighlight('clothes')
   }
 }
 
 highlightBodySection()
+
+function addHighlight(bodyPart) {
+  let node = document.getElementById(bodyPart)
+  node.classList.add('highlight')
+}
+
+function removeHighlight(bodyPart) {
+  let node = document.getElementById(bodyPart)
+  node.classList.remove('highlight')
+}
 
 // put it all together in an event function that handles keydown event
 document.addEventListener('keydown', (e) => {

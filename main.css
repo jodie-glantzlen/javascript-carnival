@@ -49,6 +49,10 @@ td {
   left: 0px;
 }
 
+.highlight {
+  filter: drop-shadow(0 0 0.75rem rgba(255, 242, 0, 0.814));
+}
+
 .head {
   z-index: 2
 }
