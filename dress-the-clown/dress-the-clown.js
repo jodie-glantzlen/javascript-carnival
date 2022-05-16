@@ -67,6 +67,18 @@ function renderCurrentClothing() {
   shoes.src = `images/shoes${shoesIndex}.png`
 }
 
+function displayBodySection() {
+  if (bodySectionIndex == 0) {
+    document.getElementById('choose-item').innerHTML = 'Choose the head!'
+  } else if (bodySectionIndex == 1) {
+    document.getElementById('choose-item').innerHTML = 'Choose the clothes!'
+  } else if (bodySectionIndex == 2) {
+    document.getElementById('choose-item').innerHTML = 'Choose the shoes!'
+  }
+}
+
+displayBodySection()
+
 // put it all together in an event function that handles keydown event
 document.addEventListener('keydown', (e) => {
   e.preventDefault()
@@ -76,12 +88,14 @@ document.addEventListener('keydown', (e) => {
       if (bodySectionIndex > 2) {
         bodySectionIndex = 0
       }
+      displayBodySection()
       break
     case 'ArrowUp':
       bodySectionIndex--
       if (bodySectionIndex < 0) {
         bodySectionIndex = 2
       }
+      displayBodySection()
       break
     case 'ArrowRight':
       increaseCurrentClothingIndex()
